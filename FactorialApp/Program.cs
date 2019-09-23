@@ -26,7 +26,7 @@ namespace FactorialApp
                     for (int i = 3; i >= 0; i--)
                     {
                         Thread.Sleep(1000);
-                        Console.WriteLine($"Out of limi closing program in {i} SEC");
+                        Console.WriteLine($"Out of limit closing program in {i} SEC");
                     }
                     return; 
                 }
