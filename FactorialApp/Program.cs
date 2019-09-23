@@ -26,9 +26,9 @@ namespace FactorialApp
                     for (int i = 3; i >= 0; i--)
                     {
                         Thread.Sleep(1000);
-                        Console.WriteLine($"Out of limit closing program in {i} SEC");
+                        Console.WriteLine($"Closing program in {i} SEC");
                     }
-                    return; 
+                    return;
                 }
 
                 string subString = string.Empty;
