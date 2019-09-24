@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Numerics;
 using System.Runtime.CompilerServices;
-using System.Threading;
 
 namespace FactorialApp
 {
@@ -9,57 +8,49 @@ namespace FactorialApp
     {
         static void Main(string[] args)
         {
-            string value = Console.ReadLine();
-            BigInteger getReturnedNumber = 0;
 
-            bool s = BigInteger.TryParse(value, out BigInteger number);
-            if (!string.IsNullOrEmpty(value) && s)
+            while (true)
             {
-                try
-                {
-                    getReturnedNumber = DisplayNumber(number);
-
-                }
-                catch (InsufficientExecutionStackException ex)
-                {
-                    Console.WriteLine("Out of limit");
-                    for (int i = 3; i >= 0; i--)
-                    {
-                        Thread.Sleep(1000);
-                        Console.WriteLine($"Closing program in {i} SEC");
-                    }
-                    return;
-                }
-
+                string value = Console.ReadLine();
                 string subString = string.Empty;
                 string trimmedValue = string.Empty;
-                if (!getReturnedNumber.Equals(null))
+                BigInteger getReturnedNumber = 0;
+
+                bool s = BigInteger.TryParse(value, out BigInteger number);
+                if (!string.IsNullOrEmpty(value) && s)
                 {
-                    string str = Convert.ToString(getReturnedNumber);
                     try
                     {
-                        if (str.Length <= 3 && !string.IsNullOrEmpty(str))
-                            Console.WriteLine(str);
-                        else
+                        getReturnedNumber = DisplayNumber(number);
+                        if (!getReturnedNumber.Equals(null))
                         {
-                            if (str.EndsWith("0"))
-                                trimmedValue = str.TrimEnd('0');
-
-                            subString = trimmedValue.Substring(trimmedValue.Length - 3);
-                            if (!string.IsNullOrEmpty(subString))
-                                Console.WriteLine(subString);
+                            string str = Convert.ToString(getReturnedNumber);
+                            try
+                            {
+                                if (str.Length <= 3 && !string.IsNullOrEmpty(str))
+                                    Console.WriteLine(str);
+                                else
+                                {
+                                    trimmedValue = str.TrimEnd('0');
+                                    subString = trimmedValue.Substring(trimmedValue.Length - 3);
+                                    Console.WriteLine(subString);
+                                }
+                            }
+                            catch (Exception err)
+                            {
+                                throw err;
+                            }
                         }
+
                     }
-                    catch (ArgumentNullException err)
+                    catch (InsufficientExecutionStackException ex)
                     {
-                        throw err;
+                        Console.WriteLine("Out of limit");
                     }
                 }
+                else
+                    Console.WriteLine("Value can not be(A - Ö) Number must start from (0)");
             }
-            else
-                Console.WriteLine("Value can not be(A - Ö) Number must start from (0)");
-
-            Console.ReadKey();
 
         }
 
