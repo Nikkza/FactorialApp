@@ -7,7 +7,6 @@ namespace FactorialApp
     {
         static void Main(string[] args)
         {
-
             while (true)
             {
                 string value = Console.ReadLine();
@@ -50,15 +49,11 @@ namespace FactorialApp
         public static BigInteger DisplayNumber(BigInteger number)
         {
             BigInteger fact = 1;
-            
-
-                while (number != 0)
-                {
-                    fact *= number;
-                    number -= 1;
-                }
-            
-           
+            while (number != 0)
+            {
+                fact *= number;
+                number -= 1;
+            }
             return fact;
         }
     }
