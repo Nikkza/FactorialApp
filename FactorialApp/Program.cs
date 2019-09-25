@@ -11,7 +11,7 @@ namespace FactorialApp
             while (true)
             {
                 string value = Console.ReadLine();
-                if (value == "close")
+                if (value.ToLower() == "close")
                 {
                     Console.Write("Closing program in ");
                     for (int a = 3; a >= 0; a--)
@@ -32,7 +32,6 @@ namespace FactorialApp
                     getReturnedNumber = DisplayNumber(number);
                     if (!getReturnedNumber.Equals(null))
                     {
-
                         try
                         {
                             if (getReturnedNumber.ToString().Length <= 3)
@@ -50,7 +49,6 @@ namespace FactorialApp
                             throw err;
                         }
                     }
-
                 }
                 else
                     Console.WriteLine($"Value can not be(A - Ö) Number must start from (0) " +
