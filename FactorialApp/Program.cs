@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Numerics;
+using System.Threading;
 
 namespace FactorialApp
 {
@@ -10,26 +11,38 @@ namespace FactorialApp
             while (true)
             {
                 string value = Console.ReadLine();
+                if (value == "close")
+                {
+                    Console.Write("Closing program in ");
+                    for (int a = 3; a >= 0; a--)
+                    {
+                        Console.CursorLeft = 19;
+                        Console.Write("{0} ", a);
+                        Thread.Sleep(1000);
+                    }
+                    break;
+                }
                 string subString = string.Empty;
                 string trimmedValue = string.Empty;
                 BigInteger getReturnedNumber = 0;
 
-                bool s = BigInteger.TryParse(value, out BigInteger number);
-                if (s && number >= 0 && number <= 10000)
+                bool validNumber = BigInteger.TryParse(value, out BigInteger number);
+                if (validNumber && number >= 0 && number <= 10000)
                 {
                     getReturnedNumber = DisplayNumber(number);
                     if (!getReturnedNumber.Equals(null))
                     {
-                        string str = Convert.ToString(getReturnedNumber);
+
                         try
                         {
-                            if (str.Length <= 3 && !string.IsNullOrEmpty(str))
-                                Console.WriteLine(str);
+                            if (getReturnedNumber.ToString().Length <= 3)
+                                Console.WriteLine($"number is {getReturnedNumber.ToString()}");
                             else
                             {
+                                string str = Convert.ToString(getReturnedNumber);
                                 trimmedValue = str.TrimEnd('0');
                                 subString = trimmedValue.Substring(trimmedValue.Length - 3);
-                                Console.WriteLine(subString);
+                                Console.WriteLine($"number is {subString}");
                             }
                         }
                         catch (Exception err)
